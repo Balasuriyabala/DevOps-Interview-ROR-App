@@ -39,6 +39,8 @@ IaC Tool: Terraform
 3. Public subnet for only ALB to distribute the application traffic
 4. IAM roles in ECS are used for secure purposes.
 
+Internet → ALB (public subnet) → ECS Rails App (private subnet) → RDS DB (private subnet)
+
 ## DIAGRAM
 
 
