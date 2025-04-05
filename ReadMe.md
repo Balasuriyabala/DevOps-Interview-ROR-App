@@ -23,3 +23,6 @@ Best Practices
 2. Private subnet for DB (Postgres)
 3. Public subnet for only ALB to distribute the application traffic
 4. IAM roles in ECS are used for secure purposes.
+
+DIAGRAM
+<img width="664" alt="Image" src="https://github.com/user-attachments/assets/f818b9e8-5163-408e-b48a-62ee4e11a035" />
