@@ -1,4 +1,17 @@
 ## Project Overview:
+
+## Deployment On Cloud Server
+1. Update ENV file 
+2. Run the docker-compose up -d 
+Console Output:
+
+<img width="836" alt="Image" src="https://github.com/user-attachments/assets/94a5075e-7dfb-4077-8a34-57d33717f460" />
+
+<img width="329" alt="Image" src="https://github.com/user-attachments/assets/ba7ad82e-27bb-4a22-8128-87233b23e84a" /> 
+
+
+<img width="932" alt="Image" src="https://github.com/user-attachments/assets/fbb46c29-1b34-461c-8d93-80b7487de6ec" />
+
 ## GoaL
 Deploy a Ruby on Rails web application to AWS using ECS/EKS with a secure, scalable infrastructure via Infrastructure as Code (IaC)
 
