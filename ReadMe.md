@@ -27,11 +27,18 @@ VPC/Subnets – Private networking
 IaC Tool: Terraform
 
 ## Deployment Steps:
-1. Clone github repo to aws ubuntu server build image
-2. Push the Image to AWS ECR
-3. Install the terraform in server or local machine (install aws cli)
-4. Under the infrastructure folder write the IAC code for services to deploy db credentail are stored in variable file
-5. terrafrom init, terraform paln, terrafrom validate, terrafrom apply (to delete entire infra terrafrom destroy)
+DOCKER IMAGE TO ECR 
+1. Clone the repos to cloud server 
+2. create a access key, secerete key, region.
+3. create a AWS ECR which is used to store the docker image in it, command are given how to push image
+    3.1 aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 381491890370.dkr.ecr.ap-south-1.amazonaws.com
+    3.2  docker build -t 
+    3.3  docker tag 
+    3.4  docker push 
+4. Once are image pushed mention in the varible.tf file that images used for container
+5. Install the terraform in server or local machine (install aws cli)
+6. Under the infrastructure folder write the IAC code for services to deploy db credentail are stored in variable file
+7. terrafrom init, terraform paln, terrafrom validate, terrafrom apply (to delete entire infra terrafrom destroy)
 
 ## Best Practices
 1. Terrafrom code for automating creation of cloud services
