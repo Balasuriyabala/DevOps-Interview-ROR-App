@@ -1,0 +1,7 @@
+## Project Overview:
+Testing
+Deploy a Ruby on Rails web application
+
+Deployment On Cloud Server
+1.Update ENV file
+2. Run the docker-compose up -d Console Output:
