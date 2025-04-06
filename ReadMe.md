@@ -13,7 +13,7 @@ Console Output:
 
 <img width="932" alt="Image" src="https://github.com/user-attachments/assets/fbb46c29-1b34-461c-8d93-80b7487de6ec" />
 
-## GoaL
+## Goal
 Deploy a Ruby on Rails web application to AWS using ECS/EKS with a secure, scalable infrastructure via Infrastructure as Code (IaC)
 
 ## AWS Services:
