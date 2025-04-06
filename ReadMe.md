@@ -1,58 +1,90 @@
-## Project Overview:
-## Testing
-Deploy a Ruby on Rails web application
-## Deployment On Cloud Server
-1. Update ENV file 
-2. Run the docker-compose up -d 
-Console Output:
+# README
 
-<img width="836" alt="Image" src="https://github.com/user-attachments/assets/94a5075e-7dfb-4077-8a34-57d33717f460" />
+# DevOps Assignment: Host Docker ROR Application with Nginx in AWS using IaC
 
-<img width="329" alt="Image" src="https://github.com/user-attachments/assets/ba7ad82e-27bb-4a22-8128-87233b23e84a" /> 
+## Introduction
 
+This assignment aims to demonstrate the process of deploying a Dockerized Ruby on Rails application with Nginx in AWS with Loadbalancer and RDS using IaC.
 
-<img width="932" alt="Image" src="https://github.com/user-attachments/assets/fbb46c29-1b34-461c-8d93-80b7487de6ec" />
+### Guideline for the assignment submission
 
-## Goal
-Deploy a Ruby on Rails web application to AWS using ECS/EKS with a secure, scalable infrastructure via Infrastructure as Code (IaC)
-
-## AWS Services:
-ECR – Docker image repository
-ECS Fargate – Container orchestration
-RDS (PostgreSQL) – Database
-S3 – File storage
-ALB (ELB) – Load balancing
-IAM – Secure role-based access
-VPC/Subnets – Private networking
-IaC Tool: Terraform
-
-## Deployment Steps:
-DOCKER IMAGE TO ECR 
-1. Clone the repos to cloud server 
-2. create a access key, secerete key, region.
-3. create a AWS ECR which is used to store the docker image in it, command are given how to push image
-    3.1 aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 381491890370.dkr.ecr.ap-south-1.amazonaws.com
-    3.2  docker build -t 
-    3.3  docker tag 
-    3.4  docker push 
-4. Once are image pushed mention in the varible.tf file that images used for container
-5. Install the terraform in server or local machine (install aws cli)
-6. Under the infrastructure folder write the IAC code for services to deploy db credentail are stored in variable file
-7. terrafrom init, terraform paln, terrafrom validate, terrafrom apply (to delete entire infra terrafrom destroy)
-
-## Best Practices
-1. Terrafrom code for automating creation of cloud services
-2. Private subnet for DB (Postgres)
-3. Public subnet for only ALB to distribute the application traffic
-4. IAM roles in ECS are used for secure purposes.
-
-Internet → ALB (public subnet) → ECS Rails App (private subnet) → RDS DB (private subnet)
-
-## DIAGRAM
+1. Fork this repo into your GitHub account. Setup the build process from the source code. Build process should generate a Docker image and upload it to AWS ECR.
+2. Create a new folder named "infrastructure" in the root of the project and push your IaC code under this folder.
+3. Prepare a Terraform/CloudFormation/CDK script to provision the scalable infrastructure in AWS ECS/EKS using this ECR image. You need to use ELB to distribute the traffic between servers. All the resources should be hosted in private subnet except load balancer.
+4. The web application will integrate with database and S3. So you may need to create a RDS instance (Postgres) and S3 bucket and use them as ENV variable in ECS. Required ENV names will be mentioned in Github repo’s README. Application should integrate with S3 using IAM role authentication, not AccessKey and SecretKey. Application should integrate with RDS using database credentials (Host, DB name, Username and Password).
+5. It should also contain a ReadMe file with cleardetails about how to use and create the Infrastructure with this IaC code.
+6. Prepare an architecture diagram, deployment steps, and any other relevant information in the same folder.
+7. Share a GitHub repository to Github account “Mallowtechdev” and send an email to HR team (hr@mallow-tech.com) about the completion along with Github repository link and branch details.
 
 
-<img width="664" alt="Image" src="https://github.com/user-attachments/assets/f818b9e8-5163-408e-b48a-62ee4e11a035" />
+### Iac Structure
+
+    ...
+    ├── infrastructure
+    │   ├──  ( # IaC Code files )
+    │   │   ...
+    │   │   ...
+    │   ├──  ReadMe
+    │   ├──  Architecture diagram
+    │   ├──  Other documentation files
+    │   ...              
+    ...
 
 
-## NOTE:
-Terraform module can be written by using each service as module and call from main.tf file 
+### Prerequisites
+
+1. AWS Account with appropriate permissions.
+2. RDS Postgres 13.3 Database ( update the credentials in the below mentioned Environment variables)
+3. LoadBalancer  ( update the loadbalancer endpoint in the environment variable)
+4. Docker installed in your local machine.
+5. Your preferred IaC tool ( Terraform, CDK, CloudFormation)
+6. Other local tools if required.
+
+### Version details:
+
+* Ruby version - `3.2.2`
+* Rails version - `7.0.5`
+* Database - `Postgresql - 13.3`
+
+### Docker conatiner details
+
+* Rails container running in port 3000
+* Nginx container running in port 80
+* You can use the container alias name "rails_app" to for the nginx to send request to rails container
+
+
+### Docker Folder Structure
+
+    ...
+    ├── docker
+    │   ├── app
+    │   │   ├── Dockerfile         # Rails container dockerfile
+    │   │   └── entrypoint.sh      # Rails container entrypoint
+    │   └── nginx
+    │       ├── default.conf       # Nginx config file
+    │       └── Dockerfile         # Nginx container dockerfile
+    │                   
+    ├── docker-compose.yml         # docker-compose file
+    ...
+
+### Environment variable for Ruby container
+
+```env
+RDS_DB_NAME="postgres database name"
+RDS_USERNAME="postgres db user name"
+RDS_PASSWORD="postgres db password"
+RDS_HOSTNAME="postgres db hostname"
+RDS_PORT="postgres db port"
+S3_BUCKET_NAME="s3 bucket name"
+S3_REGION_NAME="s3 region name"
+LB_ENDPOINT="loadbalancer endpoint without http"
+```
+
+### Environment variable for Nginx container
+
+```env
+nil
+```
+
+### Note
+This README is a guideline and should be adjusted based on your specific setup and requirements.
