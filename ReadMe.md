@@ -45,3 +45,7 @@ Internet → ALB (public subnet) → ECS Rails App (private subnet) → RDS DB (
 
 
 <img width="664" alt="Image" src="https://github.com/user-attachments/assets/f818b9e8-5163-408e-b48a-62ee4e11a035" />
+
+
+## NOTE:
+Terraform module can be written by using each service as module and call from main.tf file 
